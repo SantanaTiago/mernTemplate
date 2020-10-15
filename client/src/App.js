@@ -1,36 +1,74 @@
-import React, { Component } from 'react'
-import Navigation from './components/layout/navigation';
-import Header from './components/layout/header';
-import Features from './components/layout/features';
-import About from './components/layout/about';
-import Services from './components/layout/services';
-import Team from './components/layout/Team';
-import Contact from './components/layout/contact';
-import JsonData from './data/data.json';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
+
+import { Provider } from "react-redux";
+import store from "./store";
+
+import Dashboard from './components/admin/Dashboard'
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+
+import NotFound from './components/NotFound'
+import PrivateRoute from "./private-route/PrivateRoute";
+
+import Landing from './components/landing/landing';
+
+
+// Check for token to keep user logged in
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(token);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+
+  // Check for expired token
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());    // Redirect to login
+    window.location.href = "./auth/login";
+  }
+}
+
+function AuthLayout() {
+  return (
+    <div>
+      <Route path="/auth/register" exact component={Register} />
+      <Route path="/auth/login" exact component={Login} />
+      <Redirect from="/auth" to="/auth/login" exact />
+      <Route />
+    </div>
+  );
+}
+
+function Layouts() {
+  return (
+    <Switch>
+        <Route path="/auth" component={AuthLayout} />
+        <PrivateRoute path="/admin" component={Dashboard} />
+        <Route path="/index" component={Landing} />
+        <Redirect from="/" to="/index" exact />
+        <Route component={NotFound} />
+        <Route />
+    </Switch>
+  );
+}
 
 export class App extends Component {
-  state = {
-    landingPageData: {},
-  }
-  getlandingPageData() {
-    this.setState({landingPageData : JsonData})
-  }
-
-  componentDidMount() {
-    this.getlandingPageData();
-  }
 
   render() {
     return (
-      <div>
-        <Navigation />
-        <Header data={this.state.landingPageData.Header} />
-        <Features data={this.state.landingPageData.Features} />
-        <About data={this.state.landingPageData.About} />
-        <Services data={this.state.landingPageData.Services} />
-        <Team data={this.state.landingPageData.Team} />
-        <Contact data={this.state.landingPageData.Contact} />
-      </div>
+      <Provider store={store}>
+        <Router basename={process.env.PUBLIC_URL} >
+          <Layouts />
+        </Router>
+      </Provider>
     )
   }
 }

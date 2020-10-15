@@ -15,6 +15,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -26,6 +27,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://localhost:5000",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -37,6 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:5000"
+  }
 }
