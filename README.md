@@ -37,5 +37,5 @@ npm run dev
 - [bezkoder](https://bezkoder.com/react-redux-jwt-auth/)
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
 
