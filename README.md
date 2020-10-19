@@ -32,9 +32,9 @@ npm run dev
 
 
 ### Made with help of
-[Rishi Prasad](https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669)
-[Obielum Godson](https://www.digitalocean.com/community/tutorials/api-authentication-with-json-web-tokensjwt-and-passport)
-[bezkoder](https://bezkoder.com/react-redux-jwt-auth/)
+- [Rishi Prasad](https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669)
+- [Obielum Godson](https://www.digitalocean.com/community/tutorials/api-authentication-with-json-web-tokensjwt-and-passport)
+- [bezkoder](https://bezkoder.com/react-redux-jwt-auth/)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
