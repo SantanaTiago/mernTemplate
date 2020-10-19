@@ -16,6 +16,7 @@ class Register extends Component {
       errors: {}
     };
   }
+  
 
   componentDidMount() {
     // If logged in and user navigates to Register page, should redirect them to dashboard

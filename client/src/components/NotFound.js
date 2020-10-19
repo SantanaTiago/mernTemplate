@@ -1,23 +1,31 @@
 import React, { Component } from "react";
-import Logo from '../assets/logo3ibio.png'
+import Logo from '../assets/notFound.jpg'
 import {Link} from "react-router-dom"
 
 class NotFound extends Component {
   
     render() {
       return (
-        <div className="layout-main">
-            <div class="exception-container" style={{textAlign:"center"}}>
+        <div className="container">
                 <img alt="Logo" src={Logo} />
-                <h1>Not Found</h1>
+                <h4>
+                <b>NOT</b> FOUND
+              </h4>
                 <p>Resource is not found.</p>
                 <Link to="/">
-                    <button class="p-button p-component p-button-text-icon-left">
-                    <span class="pi pi-arrow-left p-c p-button-icon-left"></span>
-                    <span class="p-button-text p-c">Go To Dashboard</span>
-                    </button>
+                <button
+                  style={{
+                    width: "150px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    marginTop: "1rem"
+                  }}
+                  type="submit"
+                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                >
+                  INDEX
+                </button>
                 </Link>
-            </div>
         </div>
       );
     }
